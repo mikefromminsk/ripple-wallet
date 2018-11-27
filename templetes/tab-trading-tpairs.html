@@ -1,0 +1,325 @@
+<div class="row">
+
+    <div class="col-sm-12" ng-show="selected_pair">
+        <div class="col-sm-4">
+            <div class='panel panel-info'>
+                <div class="panel-heading">
+                    <h4>My Balances:</h4>
+                </div>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <b> {{pairData(selected_pair.pair1).baseCurrency}} <br> {{gatewayName(pairData(selected_pair.pair1).baseIssuer, true)}} </b>
+                        </td>
+                        <td style="vertical-align:middle">
+                            {{pairData(selected_pair.pair1).baseCurrency=='XRP' ? accountBalances.XRP + 0: accountBalances.IOU[pairData(selected_pair.pair1).baseCurrency + '.' + pairData(selected_pair.pair1).baseIssuer] + 0}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b> {{pairData(selected_pair.pair1).tradeCurrency}} <br> {{gatewayName(pairData(selected_pair.pair1).tradeIssuer, true)}} </b>
+                        </td>
+                        <td style="vertical-align:middle" >
+                            {{pairData(selected_pair.pair1).tradeCurrency=='XRP' ? accountBalances.XRP + 0: accountBalances.IOU[pairData(selected_pair.pair1).tradeCurrency + '.' + pairData(selected_pair.pair1).tradeIssuer] + 0}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div align='right'>
+                                <button class="btn btn-default" type="button" ng-click="tradingBalancesRefresh()">Refresh</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div><div class="col-sm-4">
+            <div class='panel panel-info'>
+                <div class="panel-heading">
+                    <h4>My Balances:</h4>
+                </div>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <b> {{pairData(selected_pair.pair2).baseCurrency}} <br> {{gatewayName(pairData(selected_pair.pair2).baseIssuer, true)}} </b>
+                        </td>
+                        <td style="vertical-align:middle">
+                            {{pairData(selected_pair.pair2).baseCurrency=='XRP' ? accountBalances.XRP + 0: accountBalances.IOU[pairData(selected_pair.pair2).baseCurrency + '.' + pairData(selected_pair.pair2).baseIssuer] + 0}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b> {{pairData(selected_pair.pair2).tradeCurrency}} <br> {{gatewayName(pairData(selected_pair.pair2).tradeIssuer, true)}} </b>
+                        </td>
+                        <td style="vertical-align:middle" >
+                            {{pairData(selected_pair.pair2).tradeCurrency=='XRP' ? accountBalances.XRP  + 0: accountBalances.IOU[pairData(selected_pair.pair2).tradeCurrency + '.' + pairData(selected_pair.pair2).tradeIssuer] + 0}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div align='right'>
+                                <button class="btn btn-default" type="button" ng-click="tradingBalancesRefresh()">Refresh</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div><div class="col-sm-4">
+            <div class='panel panel-info'>
+                <div class="panel-heading">
+                    <h4>My Balances:</h4>
+                </div>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <b> {{pairData(selected_pair.pair3).baseCurrency}} <br> {{gatewayName(pairData(selected_pair.pair3).baseIssuer, true)}} </b>
+                        </td>
+                        <td style="vertical-align:middle">
+                            {{pairData(selected_pair.pair3).baseCurrency=='XRP' ? accountBalances.XRP + 0: accountBalances.IOU[pairData(selected_pair.pair3).baseCurrency + '.' + pairData(selected_pair.pair3).baseIssuer] + 0}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b> {{pairData(selected_pair.pair3).tradeCurrency}} <br> {{gatewayName(pairData(selected_pair.pair3).tradeIssuer, true)}} </b>
+                        </td>
+                        <td style="vertical-align:middle" >
+                            {{pairData(selected_pair.pair3).tradeCurrency=='XRP' ? accountBalances.XRP  + 0: accountBalances.IOU[pairData(selected_pair.pair3).tradeCurrency + '.' + pairData(selected_pair.pair3).tradeIssuer] + 0}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div align='right'>
+                                <button class="btn btn-default" type="button" ng-click="tradingBalancesRefresh()">Refresh</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12" ng-show="selected_pair">
+        <div class="col-sm-4">
+            <form>
+                <div class='panel panel-danger'>
+                    <div class="panel-heading bg-danger">
+                        <h4>SELL {{pairData(selected_pair.pair1).baseCurrency}}</h4>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Amount:
+                            </td>
+                            <td>
+                                <input type="text" size="15" name="sellQuantity" ng-model="selected_pair.sellQuantity1" placeholder="amount" positive-number>
+                                {{pairData(selected_pair.pair1).baseCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Price:
+                            </td>
+                            <td>
+                                <input type="text" size="15" name="sellPrice" ng-model="selected_pair.sellPrice1" placeholder="price in {{pairData(selected_pair.pair1).tradeCurrency}}" positive-number>
+                                {{pairData(selected_pair.pair1).tradeCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total:
+                            </td>
+                            <td>
+                                {{(selected_pair.sellQuantity1 * selected_pair.sellPrice1).toPrecision(6)}}
+                                {{pairData(selected_pair.pair1).tradeCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div align='right'>
+                                    <button class="btn btn-default" type="button" ng-click="sellReset1()">Reset</button>
+                                    <button class="btn btn-danger" type="submit"
+                                            ng-click="prepareOfferCreateBid({
+                                    type: 'sell',
+                                    qty: selected_pair.sellQuantity1,
+                                    price: selected_pair.sellPrice1,
+                                    baseCurrency: pairData(selected_pair.pair1).baseCurrency,
+                                    tradeCurrency: pairData(selected_pair.pair1).tradeCurrency,
+                                    baseIssuer: pairData(selected_pair.pair1).baseIssuer,
+                                    tradeIssuer: pairData(selected_pair.pair1).tradeIssuer,
+                                    market_price: selected_pair.bid1,
+                                    })"
+                                            ng-disabled="!selected_pair.sellQuantity1 || !selected_pair.sellPrice1">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <form>
+                <div class='panel panel-danger'>
+                    <div class="panel-heading bg-danger">
+                        <h4>SELL {{pairData(selected_pair.pair2).baseCurrency}}</h4>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Amount:
+                            </td>
+                            <td>
+                                <input type="text" size="15" name="sellQuantity" ng-model="selected_pair.sellQuantity2" placeholder="amount" positive-number>
+                                {{pairData(selected_pair.pair2).baseCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Price:
+                            </td>
+                            <td>
+                                <input type="text" size="15" name="sellPrice" ng-model="selected_pair.sellPrice2"
+                                       placeholder="price in {{pairData(selected_pair.pair2).tradeCurrency}}" positive-number>
+                                {{pairData(selected_pair.pair2).tradeCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total:
+                            </td>
+                            <td>
+                                {{(selected_pair.sellQuantity2 * selected_pair.sellPrice2).toPrecision(6)}}
+                                {{pairData(selected_pair.pair2).tradeCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div align='right'>
+                                    <button class="btn btn-default" type="button" ng-click="sellReset2()">Reset</button>
+                                    <button class="btn btn-danger" type="submit"
+                                            ng-click="prepareOfferCreateBid({
+                                    type: 'sell',
+                                    qty: selected_pair.sellQuantity2,
+                                    price: selected_pair.sellPrice2,
+                                    baseCurrency: pairData(selected_pair.pair2).baseCurrency,
+                                    tradeCurrency: pairData(selected_pair.pair2).tradeCurrency,
+                                    baseIssuer: pairData(selected_pair.pair2).baseIssuer,
+                                    tradeIssuer: pairData(selected_pair.pair2).tradeIssuer,
+                                    market_price: selected_pair.bid2,
+                                    })"
+                                            ng-disabled="!selected_pair.sellQuantity2 || !selected_pair.sellPrice2">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <form>
+                <div class='panel panel-danger'>
+                    <div class="panel-heading bg-danger">
+                        <h4>SELL {{pairData(selected_pair.pair3).baseCurrency}}</h4>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Amount:
+                            </td>
+                            <td>
+                                <input type="text" size="15" name="sellQuantity" ng-model="selected_pair.sellQuantity3" placeholder="amount" positive-number>
+                                {{pairData(selected_pair.pair3).baseCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Price:
+                            </td>
+                            <td>
+                                <input type="text" size="15" name="sellPrice" ng-model="selected_pair.sellPrice3"
+                                       placeholder="price in {{pairData(selected_pair.pair3).tradeCurrency}}" positive-number>
+                                {{pairData(selected_pair.pair3).tradeCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total:
+                            </td>
+                            <td>
+                                {{(selected_pair.sellQuantity3 * selected_pair.sellPrice3).toPrecision(6)}}
+                                {{pairData(selected_pair.pair3).tradeCurrency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div align='right'>
+                                    <button class="btn btn-default" type="button" ng-click="sellReset3()">Reset</button>
+                                    <button class="btn btn-danger" type="submit"
+                                            ng-click="prepareOfferCreateBid({
+                                    type: 'sell',
+                                    qty: selected_pair.sellQuantity3,
+                                    price: selected_pair.sellPrice3,
+                                    baseCurrency: pairData(selected_pair.pair3).baseCurrency,
+                                    tradeCurrency: pairData(selected_pair.pair3).tradeCurrency,
+                                    baseIssuer: pairData(selected_pair.pair3).baseIssuer,
+                                    tradeIssuer: pairData(selected_pair.pair3).tradeIssuer,
+                                    market_price: selected_pair.bid3,
+                                    })"
+                                            ng-disabled="!selected_pair.sellQuantity3 || !selected_pair.sellPrice3">Sell</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td class="bg-info"><a href="#" ng-click="sortType = 'cur1'; sortReverse = !sortReverse">Cur1</a></td>
+            <td class="bg-success"><a href="#" ng-click="sortType = 'bid1'; sortReverse = !sortReverse">Bid1</a></td>
+            <td class="bg-info"><a href="#" ng-click="sortType = 'cur2'; sortReverse = !sortReverse">Cur2</a></td>
+            <td class="bg-success"><a href="#" ng-click="sortType = 'bid2'; sortReverse = !sortReverse">Bid2</a></td>
+            <td class="bg-info"><a href="#" ng-click="sortType = 'cur3'; sortReverse = !sortReverse">Cur2</a></td>
+            <td class="bg-success"><a href="#" ng-click="sortType = 'bid3'; sortReverse = !sortReverse">Bid2</a></td>
+            <td class="bg-warning"><a href="#" ng-click="sortType = 'formula'; sortReverse = !sortReverse">Formula</a></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="pair in tpairs | orderBy:sortType:sortReverse" ng-click="setSelectedPair(pair)" >
+            <td >{{ pair.cur1 }}</td>
+            <td >{{ pair.bid1 }}</td>
+            <td >{{ pair.cur2 }}</td>
+            <td >{{ pair.bid2 }}</td>
+            <td >{{ pair.cur3 }}</td>
+            <td >{{ pair.bid3 }}</td>
+            <td >{{ pair.formula }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div uib-dropdown uib-keyboard-nav>
+			<span style="font-weight:bold; font-size:14pt; color:green">
+				{{pairName(tradding.pair, true)}}</span>
+        </span>
+        <button type="button" uib-dropdown-toggle><span class="caret"></span></button>
+        <ul class="uib-dropdown-menu">
+            <li><a href="#" ng-click="prepareTradePair({set:true})"> -- Add New -- </a></li>
+            <li ng-repeat="pair in tradepairs"><a href="#" ng-click="setTradePair(pair)">{{pairName(pair)}}</a></li>
+        </ul>
+        <button ng-click="flipTradePair()"><span class="glyphicon glyphicon-transfer"></span> Flip</button>
+    </div>
+
+    <select ng-model="opairs[0]" ng-options="pairName(x, true) for x in pair_to_select"></select><br>
+    <select ng-model="opairs[1]" ng-options="pairName(x, true) for x in pair_to_select"></select><br>
+    <select ng-model="opairs[2]" ng-options="pairName(x, true) for x in pair_to_select"></select><br>
+    <button class="btn btn-warning btn-sm" ng-click="addTPair()"><span
+            class="glyphicon glyphicon-refresh"></span>
+        Add to table
+    </button>
+</div>

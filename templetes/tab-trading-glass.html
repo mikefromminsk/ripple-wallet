@@ -1,0 +1,57 @@
+
+<button class="btn btn-warning btn-sm" ng-click="subscribePairs()"><span class="glyphicon glyphicon-refresh"></span>
+    Resubscribe
+</button>
+<div class="row">
+    <div class="panel col-sm-12">
+    <!--{{trading.bid_status}}-->
+    <table class="table table" style="text-align:center;">
+        <thead>
+        <tr class="row">
+            <th class="bg-success" style="width: 34%; text-align:center;">Pair</th>
+            <th class="bg-success" style="width: 11%; text-align:center;">Sum</th>
+            <th class="bg-success" style="width: 11%; text-align:center;">Volume</th>
+            <th class="bg-success" style="width: 11%; text-align:center;">Bid Price</th>
+            <th class="bg-success" style="width: 11%; text-align:center;">Remove</th>
+            <!--
+                <th class="bg-danger" style="width: 11%; text-align:center;">Ask Price</th>
+                <th class="bg-danger" style="width: 11%; text-align:center;">Volume</th>
+                <th class="bg-danger" style="width: 11%; text-align:center;">Sum</th>-->
+        </tr>
+        <thead>
+    </table>
+    <div>
+        <table class="table table-striped" style="text-align:center;">
+            <tr ng-repeat="pair in pairs" class="row">
+                <td style="width: 34%;">{{pairName(pair.name, true)}}</td>
+                <td style="width: 11%;" ng-click="trading.sellQuantity=offerPaysFundedToHuman(offer, true)">
+                    {{pair.bidOffer == null ? "" : offerPaysFundedToHuman(pair.bidOffer, true).toPrecision(6)}}
+                </td>
+                <td style="width: 11%;">{{pair.bidOffer == null ? "" :
+                    offerPaysFundedToHuman(pair.bidOffer).toPrecision(6)}}
+                </td>
+                <td style="width: 11%;">
+	  				<span tooltip-animation="false"
+                          uib-tooltip="{{pair.bidOffer.autobridged ? 'autobridge' : pair.bidOffer.Account}}">
+						{{pair.bidOffer == null ? "" : offerPrice(pair).toPrecision(6)}} </span>
+                </td>
+                <td style="width: 11%;">
+	  				<button ng-show="pair.bookBid" ng-click="deletePair(pair)">delete</button>
+                </td>
+
+                <!--<td style="width: 11%;">
+                    <span tooltip-animation="false"
+                          uib-tooltip="{{pair.askOffer.autobridged ? 'autobridge' : pair.askOffer.Account}}">
+                        {{pair.askOffer == null ? "" : offerPriceToHuman(pair.askOffer, true).toPrecision(6)}}</span>
+                </td>
+                <td style="width: 11%;">{{pair.askOffer == null ? "" :
+                    offerGetsFundedToHuman(pair.askOffer).toPrecision(6)}}
+                </td>
+                <td style="width: 11%;" ng-click="trading.buyQuantity=offerGetsFundedToHuman(offer, true)">
+                    {{pair.askOffer == null ? "" : offerGetsFundedToHuman(pair.askOffer, true).toPrecision(6)}}
+                </td>-->
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
